@@ -67,4 +67,4 @@ MIT License
 ## Acknowledgments
 
 Inspiration, code snippets, etc.
-* [MrBlackX | TheMasterCH](https://github.com/R3blox3r)
+* [MrBlackX | TheMasterCH](https://github.com/rebl0x3r)

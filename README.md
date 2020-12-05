@@ -57,6 +57,9 @@ Contributors names and contact info
 
 ## Version History
 
+* 0.2
+    * Code Improvement 
+    * Added Exec. Trap
 * 0.1
     * Initial Release
 
@@ -66,5 +69,5 @@ MIT License
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
+Inspiration, code snippets, code fixes, help etc.
 * [MrBlackX | TheMasterCH](https://github.com/rebl0x3r)

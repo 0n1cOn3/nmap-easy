@@ -1,4 +1,4 @@
-#! /bin/zsh
+#!/bin/env bash
 ###################
 # nmap easycli    #
 # Version: 0.1    #
@@ -9,7 +9,7 @@
 # Ctrl+C Sigkill Trap
 esc_count=0
 
-root () {
+root(){
     # Check Root access
 echo ''
 sleep 1
@@ -32,17 +32,14 @@ function no_ctrlc () {
 let esc_count++
 echo
 if [[ $esc_count == 1 ]]; then
-echo "Stop that."
+echo "Exiting easy-nmap..."
 elif [[ $esc_count == 2 ]]; then
-echo "Once more and I quit."
+echo "Made in Switzerland, 2020"
 else
-echo "That's it.  I quit."
+echo "Bye"
 exit
 fi
 }
-
-
-while no_ctrlc do
 
 #color support
 RED="\e[31m"
@@ -53,86 +50,178 @@ MAGENTA="\e[35m"
 CYAN="\e[36m"
 BOLD="\e[1m"
 
-banner () {
+banner(){
     echo -e " ${YELLOW}
-<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                                                                         
-| Made in 2020                                               ████   ███  |
-|                                                           ░███  ░░░    |
-|  ████████   █████████████    ██████   ████████      ██████ ░███  ████  |
-| ░███░░███ ░░███░░███░░███  ░░░░░███ ░░███░░███    ███░░███ ░███  ░███  |
-| ░███ ░███  ░███ ░███ ░███   ███████  ░███ ░███   ░███ ░░░  ░███  ░███  |
-| ░███ ░███  ░███ ░███ ░███  ███░░███  ░███ ░███   ░███  ███ ░███  ░███  |
-| ████ █████ █████░███ █████░░████████ ░███████    ░░██████  █████ █████ |
-| ░░░░ ░░░░░ ░░░░░ ░░░ ░░░░░  ░░░░░░░░  ░███░░░      ░░░░░░  ░░░░░ ░░░░░ |
-|                                       ░███                             |
-|                                       █████                            |
-| Version: 0.1                          ░░░░░         Made by: 0n1cOn3   |
->>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                                                                         
+ | Made in 2020                                               ████   ███  |
+ |                                                           ░███  ░░░    |
+ |  ████████   █████████████    ██████   ████████      ██████ ░███  ████  |
+ | ░███░░███ ░░███░░███░░███  ░░░░░███ ░░███░░███    ███░░███ ░███  ░███  |
+ | ░███ ░███  ░███ ░███ ░███   ███████  ░███ ░███   ░███ ░░░  ░███  ░███  |
+ | ░███ ░███  ░███ ░███ ░███  ███░░███  ░███ ░███   ░███  ███ ░███  ░███  |
+ | ████ █████ █████░███ █████░░████████ ░███████    ░░██████  █████ █████ |
+ | ░░░░ ░░░░░ ░░░░░ ░░░ ░░░░░  ░░░░░░░░  ░███░░░      ░░░░░░  ░░░░░ ░░░░░ |
+ |                                       ░███                             |
+ |                                       █████                            |
+ | Version: 0.2                          ░░░░░         Made by: 0n1cOn3   |
+ >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     "
 }
+# Update Modul - Thank you #Rebl0x3r for the snippet!!
+update(){
+	up=$(git pull &>/dev/null)
+	echo -e "${MAGENTA}[*] ${BLUE}Checking if you up-to-date..."
+	echo ""
+	sleep 0.5
+	if [[ "$up" == "Already up to date." ]]
+	then
+		echo -e "${GREEN}[i] ${BLUE}Already on the latest version :-)"
+	else
+		git pull -q &>/dev/null
+		echo -e "${MAGENTA}[*] ${BLUE}Tool is updated to version $version."
+	fi
+}
 
-menu () {
-selection=
-until [ "$selection" = "0" ]; do
-echo -e " ${GREEN}
+menu(){
+    selection=
+    until [ "$selection" = "0" ]; do
+        echo -e "
+${MAGENTA}_____________________________________________________________________________
 
-Press 1 == Port Scan
-Press 2 == Vuln Scan
-Press 3 == Stealth Scan 
-
-Press 9 == Update nmap-cli
-Press 0 == Exit program
-"
-     echo -n "Enter Selection: "
-     read -r selection
-     echo -e "${GREEN}<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<"
-case $selection in
-1 )
-clear
-banner
-echo -e "${GREEN}[!] Enter you target IP to scan:" 
-read -r "IP"
-sudo nmap "$IP"
-banner;;
-    2 )
-    clear
-    banner
-    echo "${YELLOW}[!] Vulnerability Mode Selected "
-    echo -e "${GREEN}[!] Enter you target Host to scan:" 
-    read -r "Host"
-    nmap -sV --script=vulscan/vulscan.nse $Host
-    banner;;
-        3 ) 
-        clear
-        banner
-        echo "${YELLOW}[!]Stealh Mode Selected"
+ ${BLUE} [1] ${GREEN} Port Scan        ${BLUE} [7] ${GREEN}  TCPWinPort Scan     
+ ${BLUE} [2] ${GREEN} Vuln Scan        ${BLUE} [8] ${GREEN}  TCPMaiPort Scan     
+ ${BLUE} [3] ${GREEN} Stealth Scan     ${BLUE} [9] ${GREEN}  Empty            
+ ${BLUE} [4] ${GREEN} SynPort Scan     ${BLUE} [10] ${GREEN} Empty                
+ ${BLUE} [5] ${GREEN} TCPPort Scan     ${BLUE} [11] ${GREEN} Empty                
+ ${BLUE} [6] ${GREEN} UDPPort Scan     ${BLUE} [12] ${GREEN} Empty                
+                                                                                        
+  ${BOLD}[e] Exit program    ${RED}[u] Update nmap-cli    ${GREEN}[r] Show Scan Results                         
+${MAGENTA}_____________________________________________________________________________"
         echo ""
-        echo -e "${GREEN}[!] Enter you target IP to scan:" 
-        read -r "IP"
-        sudo nmap "$IP"
-        banner;;
-         	4 )
-            exit;;
-				5 ) 
-                exit;;	
-					6 ) 				
-                    exit;;
-				   		7 ) 				
-                        exit;;
-							8 ) 
-						    exit;;
-				0 ) exit;;
-         * ) echo "Please enter 1,2,3,4,9 or 0 for exit"
-     esac
-done
+        echo -n -e ${CYAN}"   Please enter your choice: "
+        read -r selection
+        echo -e "${GREEN}__________________________________________________________________________"
+        portscan(){
+            clear
+            banner
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" >> scanresult.txt
+        }
+        
+        vulnscan(){
+            clear
+            banner
+            echo -e "${YELLOW}[!] Vulnerability Scan Mode Selected "
+            echo -e "${GREEN}[!] Enter you target Host to scan:" 
+            read -r "Host"
+            nmap -sV --script=vulscan/vulscan.nse $Host >> scanresult.txt
+        }
+
+        stealthscan(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]Stealh Scan Mode Selected"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" >> scanresult.txt
+        }
+
+        report(){
+            clear
+            banner
+            cat scanresult.txt | lolcat
+            read -n 1 -s -r -p "[✓] any key to continue"
+            clear
+            banner
+        }
+#######################################################################################
+        synport_ss(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]TCP SYN port scan"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" -sS >> scanresult.txt            
+        }
+
+        tcpport_st(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]TCP connect port scan"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" -sT >> scanresult.txt            
+        }
+
+        udpport_su(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]UDP port scan"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" -sU >> scanresult.txt    
+            banner        
+        }
+
+        tcpport_sa(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]TCP ACK port scan"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" -sA >> scanresult.txt
+            banner            
+        }
+
+        tcpwinport(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]TCP Windows port scan"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" -sW >> scanresult.txt
+            banner            
+        }
+
+        tcpmaiport(){
+            clear
+            banner
+            echo -e "${YELLOW}[!]TCP Maimon port scan"
+            echo ""
+            echo -e "${GREEN}[!] Enter you target IP to scan:" 
+            read -r "IP"
+            sudo nmap "$IP" -sM >> scanresult.txt
+            banner           
+        }        
+#######################################################################################
+        case $selection in
+            1) portscan;;
+            2) vulnscan;;
+            3) stealthscan;; 
+      	    4) synport_st;;
+		    5) udpport_su;;	
+			6) tcpport_sa;;
+			7) tcpwinport;;
+            8) tcpmaiport;;
+            9) exit;;
+            10) exit;;
+			r) report;;
+            u) update;;
+            exit) exit;;
+            *) echo "Please enter 1,2,3,8 or 0 for exit"
+        esac
+    done
 }
 
-tmp () {
-    if [[ 1 || 2 || 3 || 4 || 5 ]];then
-    rm 1 2 3 4 5
-    fi
-}
-init () {
+init(){
 # Check Root access
 echo ''
 sleep 1
@@ -148,88 +237,69 @@ exit
 else
 echo -e "${GREEN} [✓] Root Access :)"
 sleep 2
-echo ""
-echo -e "${GREEN} [!] Check dependecies :)"
+echo -e "${YELLOW} [!] Check dependecies :)"
 echo ""
 sleep 1
+fi
 if ! hash nmap 2>/dev/null;then
     echo ""
-	echo -e $RED "[✗] Package nmap not installed"
+	echo -e $RED "[✗] The Package nmap is in not istalled"
     echo ""
 	apt-get install nmap -y || 2&>/var/logs/nmapclierror.log
 else
     echo ""
-	echo -e $GREEN "[✓] Package nmap installed" | tee -a 1
+	echo -e $GREEN "[✓] The Package nmap is installed"  
 fi	
 sleep 0.2
 if ! hash lolcat 2>/dev/null;then
     echo ""
-    echo -e $GREEN "[✓] Package lolcat installed" | tee -a 2
-else
-    echo ""
-    echo -e $RED "[✗] Package lolcat not installed" 
+    echo -e  $RED "[✗] The Package lolcat is not installed"
     echo ""
     apt-get install lolcat -y || 2&>/var/logs/nmapcli-error.log
+else
+    echo ""
+    echo -e $GREEN "[✓] The Package lolcat is installed"
 fi	
 sleep 0.2
 if ! hash figlet 2>/dev/null;then
 	echo ""
-    echo -e $RED "[✗] Package figlet not installed"
+    echo -e $RED "[✗] The Package figlet is not installed"
     echo ""
 	apt-get install figlet -y || 2&>/var/logs/nmapcli-error.log
 else
     echo ""
-	echo -e $GREEN "[✓] Package figlet installed" | tee -a 3
+	echo -e $GREEN "[✓] The Package figlet is installed"
 fi
 sleep 0.2
 if ! hash git 2>/dev/null;then
     echo ""
-    echo -e $RED "[✗] Package git not installed" 
+    echo -e $RED "[✗] The Package git is not installed" 
     echo ""
     apt-get install git -y || 2&>/var/logs/nmapcli-error.log
 else
     echo ""
-    echo -e $GREEN "[✓] Package git installed" | tee -a 4
+    echo -e $GREEN "[✓] The Package git is installed"
 fi	
 if ! hash figlet 2>/dev/null;then
 	echo ""
-    echo -e $RED "[✗] Package vulscan not installed"
+    echo -e $RED "[✗] The Package vulscan is not installed"
 	git clone https://github.com/scipag/vulscan scipag_vulscan 2&> /var/logs/nmapclierror.log
     ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan 2&> /var/logs/nmapclierror.log
 else
     echo ""
-	echo -e $GREEN "[✓] Package vulnscan installed" | tee -a 5
+	echo -e $GREEN "[✓] The Package vulnscan is installed"
 fi
-fi
-paste 1 2 3 4 5 > nmapcli-installed
 sleep 2
-tmp
 echo ""
 echo "loading menu...please wait"
-sleep 3
+sleep 1.5
 clear
 banner
 menu
 }
 
-# Update Modul - Thank you #Rebl0x3r for the snippet!!
-update () {
-	up=$(git pull &>/dev/null)
-	echo -e "${MAGENTA}[*] ${BLUE}Checking if you up-to-date..."
-	echo ""
-	sleep 0.5
-	if [[ "$up" == "Already up to date." ]]
-	then
-		echo -e "${GREEN}[i] ${BLUE}Already on the latest version :-)"
-	else
-		git pull -q &>/dev/null
-		echo -e "${MAGENTA}[*] ${BLUE}Tool is updated to version $version."
-	fi
-}
-
-
-loader () {
-    if [[ -s nmapcli-installed ]];then
+loader(){
+    if [[ -s nmapcli.installed ]];then
     clear
     banner
     root
@@ -237,11 +307,12 @@ loader () {
     else
     banner
     init
-fi
+    fi
 }
-
-clear
-loader
-clear
-banner
-menu
+while no_ctrlc; do
+    clear
+    loader
+    clear
+    banner
+    menu
+done

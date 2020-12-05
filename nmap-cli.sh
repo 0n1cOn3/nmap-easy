@@ -1,9 +1,10 @@
 #!/bin/env bash
-###################
-# nmap easycli    #
-# Version: 0.1    #
-# Author: 0n1cOn3 #
-#@@@@@@@@@@@@@@@@@#
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
+# nmap easycli                               #
+# Version: 0.1                               #
+# Author: 0n1cOn3                            #
+# Contributer: MrBlackX/TheMasterCH/Rebl0x3r #
+#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
 #
 version=0.2
 # Ctrl+C Sigkill Trap

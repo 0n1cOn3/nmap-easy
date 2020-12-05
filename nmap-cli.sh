@@ -5,7 +5,7 @@
 # Author: 0n1cOn3 #
 #@@@@@@@@@@@@@@@@@#
 #
-
+version=0.2
 # Ctrl+C Sigkill Trap
 esc_count=0
 
@@ -52,21 +52,21 @@ BOLD="\e[1m"
 
 banner(){
     echo -e " ${YELLOW}
-
- <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<                                                                         
- | Made in 2020                                               ████   ███  |
- |                                                           ░███  ░░░    |
- |  ████████   █████████████    ██████   ████████      ██████ ░███  ████  |
- | ░███░░███ ░░███░░███░░███  ░░░░░███ ░░███░░███    ███░░███ ░███  ░███  |
- | ░███ ░███  ░███ ░███ ░███   ███████  ░███ ░███   ░███ ░░░  ░███  ░███  |
- | ░███ ░███  ░███ ░███ ░███  ███░░███  ░███ ░███   ░███  ███ ░███  ░███  |
- | ████ █████ █████░███ █████░░████████ ░███████    ░░██████  █████ █████ |
- | ░░░░ ░░░░░ ░░░░░ ░░░ ░░░░░  ░░░░░░░░  ░███░░░      ░░░░░░  ░░░░░ ░░░░░ |
- |                                       ░███                             |
- |                                       █████                            |
- | Version: 0.2                          ░░░░░         Made by: 0n1cOn3   |
- >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    "
+****************************************************************************
+****************************************************************************                                                                        
+** Made in 2020                                               ████   ███  **
+**                                                            ░███  ░░░   **
+**  ████████   █████████████    ██████   ████████      ██████ ░███  ████  **
+** ░███░░███ ░░███░░███░░███  ░░░░░███ ░░███░░███    ███░░███ ░███  ░███  **
+** ░███ ░███  ░███ ░███ ░███   ███████  ░███ ░███   ░███ ░░░  ░███  ░███  **
+** ░███ ░███  ░███ ░███ ░███  ███░░███  ░███ ░███   ░███  ███ ░███  ░███  **
+** ████ █████ █████░███ █████░░████████ ░███████    ░░██████  █████ █████ **
+** ░░░░ ░░░░░ ░░░░░ ░░░ ░░░░░  ░░░░░░░░  ░███░░░      ░░░░░░  ░░░░░ ░░░░░ **
+**                                       ░███                             **
+**                                       █████                            **
+** Version: 0.2                          ░░░░░         Made by: 0n1cOn3   **
+****************************************************************************
+****************************************************************************"
 }
 # Update Modul - Thank you #Rebl0x3r for the snippet!!
 update(){
@@ -76,11 +76,14 @@ update(){
 	sleep 0.5
 	if [[ "$up" == "Already up to date." ]]
 	then
-		echo -e "${GREEN}[i] ${BLUE}Already on the latest version :-)"
+	git pull -q &>/dev/null
+	echo -e "${MAGENTA}[*] ${BLUE}Tool has been updated to version $version."
 	else
-		git pull -q &>/dev/null
-		echo -e "${MAGENTA}[*] ${BLUE}Tool is updated to version $version."
+    echo -e "${GREEN}[i] ${BLUE}Already on the latest version :-)"
 	fi
+    sleep 3
+    clear
+    banner
 }
 
 menu(){
@@ -89,12 +92,43 @@ menu(){
         echo -e "
 ${MAGENTA}_____________________________________________________________________________
 
- ${BLUE} [1] ${GREEN} Port Scan        ${BLUE} [7] ${GREEN}  TCPWinPort Scan     
- ${BLUE} [2] ${GREEN} Vuln Scan        ${BLUE} [8] ${GREEN}  TCPMaiPort Scan     
- ${BLUE} [3] ${GREEN} Stealth Scan     ${BLUE} [9] ${GREEN}  Empty            
- ${BLUE} [4] ${GREEN} SynPort Scan     ${BLUE} [10] ${GREEN} Empty                
- ${BLUE} [5] ${GREEN} TCPPort Scan     ${BLUE} [11] ${GREEN} Empty                
- ${BLUE} [6] ${GREEN} UDPPort Scan     ${BLUE} [12] ${GREEN} Empty                
+ ${BLUE} [1] ${GREEN} Port Scan        ${BLUE} [37] ${GREEN} Coming Soon...      ${BLUE} [73] ${GREEN} Coming Soon...
+ ${BLUE} [2] ${GREEN} Vuln Scan        ${BLUE} [38] ${GREEN} Coming Soon...      ${BLUE} [74] ${GREEN} Coming Soon...
+ ${BLUE} [3] ${GREEN} Stealth Scan     ${BLUE} [39] ${GREEN} Coming Soon...      ${BLUE} [75] ${GREEN} Coming Soon...       
+ ${BLUE} [4] ${GREEN} SynPort Scan     ${BLUE} [40] ${GREEN} Coming Soon...      ${BLUE} [76] ${GREEN} Coming Soon...           
+ ${BLUE} [5] ${GREEN} TCPPort Scan     ${BLUE} [41] ${GREEN} Coming Soon...      ${BLUE} [77] ${GREEN} Coming Soon...           
+ ${BLUE} [6] ${GREEN} UDPPort Scan     ${BLUE} [42] ${GREEN} Coming Soon...      ${BLUE} [78] ${GREEN} Coming Soon...
+ ${BLUE} [7] ${GREEN} TCPWinPort Scan  ${BLUE} [43] ${GREEN} Coming Soon...      ${BLUE} [79] ${GREEN} Coming Soon...
+ ${BLUE} [8] ${GREEN} TCPMaiPort Scan  ${BLUE} [44] ${GREEN} Coming Soon...      ${BLUE} [80] ${GREEN} Coming Soon...           
+ ${BLUE} [9] ${GREEN} Coming Soon      ${BLUE} [45] ${GREEN} Coming Soon...      ${BLUE} [81] ${GREEN} Coming Soon...
+ ${BLUE} [10] ${GREEN}Coming Soon      ${BLUE} [46] ${GREEN} Coming Soon...      ${BLUE} [82] ${GREEN} Coming Soon...
+ ${BLUE} [11] ${GREEN}Coming Soon      ${BLUE} [47] ${GREEN} Coming Soon...      ${BLUE} [83] ${GREEN} Coming Soon...
+ ${BLUE} [12] ${GREEN}Coming Soon      ${BLUE} [48] ${GREEN} Coming Soon...      ${BLUE} [84] ${GREEN} Coming Soon...
+ ${BLUE} [13] ${GREEN}Coming Soon      ${BLUE} [49] ${GREEN} Coming Soon...      ${BLUE} [85] ${GREEN} Coming Soon...
+ ${BLUE} [14] ${GREEN}Coming Soon      ${BLUE} [50] ${GREEN} Coming Soon...      ${BLUE} [86] ${GREEN} Coming Soon...
+ ${BLUE} [15] ${GREEN}Coming Soon      ${BLUE} [51] ${GREEN} Coming Soon...      ${BLUE} [87] ${GREEN} Coming Soon...
+ ${BLUE} [16] ${GREEN}Coming Soon      ${BLUE} [52] ${GREEN} Coming Soon...      ${BLUE} [88] ${GREEN} Coming Soon...
+ ${BLUE} [17] ${GREEN}Coming Soon      ${BLUE} [53] ${GREEN} Coming Soon...      ${BLUE} [89] ${GREEN} Coming Soon...
+ ${BLUE} [18] ${GREEN}Coming Soon      ${BLUE} [54] ${GREEN} Coming Soon...      ${BLUE} [90] ${GREEN} Coming Soon...
+ ${BLUE} [19] ${GREEN}Coming Soon      ${BLUE} [55] ${GREEN} Coming Soon...      ${BLUE} [91] ${GREEN} Coming Soon...
+ ${BLUE} [20] ${GREEN}Coming Soon      ${BLUE} [56] ${GREEN} Coming Soon...      ${BLUE} [92] ${GREEN} Coming Soon...
+ ${BLUE} [21] ${GREEN}Coming Soon      ${BLUE} [57] ${GREEN} Coming Soon...      ${BLUE} [93] ${GREEN} Coming Soon...
+ ${BLUE} [22] ${GREEN}Coming Soon      ${BLUE} [58] ${GREEN} Coming Soon...      ${BLUE} [94] ${GREEN} Coming Soon...
+ ${BLUE} [23] ${GREEN}Coming Soon      ${BLUE} [59] ${GREEN} Coming Soon...      ${BLUE} [95] ${GREEN} Coming Soon...
+ ${BLUE} [24] ${GREEN}Coming Soon      ${BLUE} [60] ${GREEN} Coming Soon...      ${BLUE} [96] ${GREEN} Coming Soon...
+ ${BLUE} [25] ${GREEN}Coming Soon      ${BLUE} [61] ${GREEN} Coming Soon...      ${BLUE} [97] ${GREEN} Coming Soon...
+ ${BLUE} [26] ${GREEN}Coming Soon      ${BLUE} [62] ${GREEN} Coming Soon...      ${BLUE} [98] ${GREEN} Coming Soon...
+ ${BLUE} [27] ${GREEN}Coming Soon      ${BLUE} [63] ${GREEN} Coming Soon...      ${BLUE} [99] ${GREEN} Coming Soon...
+ ${BLUE} [28] ${GREEN}Coming Soon      ${BLUE} [64] ${GREEN} Coming Soon...      ${BLUE}[100] ${GREEN} Coming Soon...
+ ${BLUE} [29] ${GREEN}Coming Soon      ${BLUE} [65] ${GREEN} Coming Soon...      ${BLUE}[101] ${GREEN} Coming Soon...
+ ${BLUE} [30] ${GREEN}Coming Soon      ${BLUE} [66] ${GREEN} Coming Soon...      ${BLUE}[102] ${GREEN} Coming Soon...
+ ${BLUE} [31] ${GREEN}Coming Soon      ${BLUE} [67] ${GREEN} Coming Soon...      ${BLUE}[103] ${GREEN} Coming Soon...
+ ${BLUE} [32] ${GREEN}Coming Soon      ${BLUE} [68] ${GREEN} Coming Soon...      ${BLUE}[104] ${GREEN} Coming Soon...
+ ${BLUE} [33] ${GREEN}Coming Soon      ${BLUE} [69] ${GREEN} Coming Soon...      ${BLUE}[105] ${GREEN} Coming Soon...
+ ${BLUE} [34] ${GREEN}Coming Soon      ${BLUE} [70] ${GREEN} Coming Soon...      ${BLUE}[106] ${GREEN} Coming Soon...
+ ${BLUE} [35] ${GREEN}Coming Soon      ${BLUE} [71] ${GREEN} Coming Soon...      ${BLUE}[107] ${GREEN} Coming Soon...
+ ${BLUE} [36] ${GREEN}Coming Soon      ${BLUE} [72] ${GREEN} Coming Soon...      ${BLUE}[108] ${GREEN} Coming Soon...
+ 
                                                                                         
   ${BOLD}[e] Exit program    ${RED}[u] Update nmap-cli    ${GREEN}[r] Show Scan Results                         
 ${MAGENTA}_____________________________________________________________________________"
@@ -213,10 +247,12 @@ ${MAGENTA}______________________________________________________________________
             8) tcpmaiport;;
             9) exit;;
             10) exit;;
+            11) exit;;
+            12) exit;;
 			r) report;;
             u) update;;
             exit) exit;;
-            *) echo "Please enter 1,2,3,8 or 0 for exit"
+            *) echo "Please choose a number or type exit"
         esac
     done
 }
@@ -289,7 +325,7 @@ else
     echo ""
 	echo -e $GREEN "[✓] The Package vulnscan is installed"
 fi
-sleep 2
+sleep 1
 echo ""
 echo "loading menu...please wait"
 sleep 1.5

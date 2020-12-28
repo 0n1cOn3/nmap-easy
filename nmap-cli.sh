@@ -347,7 +347,7 @@ ${MAGENTA}______________________________________________________________________
 			r) report;;
             u) update;;
             e) exit;;
-            *) echo "Please choose a number or type exit"
+            *) echo "Please choose a number or type e"
         esac
     done
 }
@@ -411,13 +411,13 @@ init(){
 #else
 #echo -e "${GREEN} [✓] Root Access :)"
 #sleep 2
-#echo -e "${YELLOW} [!] Check dependecies :)"
-#echo ""
-#sleep 1
+echo -e "${YELLOW} [!] Check dependencies :)"
+echo ""
+sleep 1
 #fi
 if ! hash nmap 2>/dev/null;then
     echo ""
-	echo -e $RED "[✗] The Package nmap is in not istalled"
+	echo -e $RED "[✗] The Package nmap is not istalled"
     echo ""
 	${pm} nmap || 2&>/var/logs/nmapclierror.log
 else

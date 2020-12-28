@@ -1,9 +1,10 @@
 #!/bin/env bash
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
 # nmap easycli                               #
-# Version: 0.1                               #
+# Version: 0.2                               #
 # Author: 0n1cOn3                            #
-# Contributer: MrBlackX/TheMasterCH/Rebl0x3r #
+# Contributor: MrBlackX/TheMasterCH/Rebl0x3r #
+# Guy Who Made PR: kNIGHT                    #
 #@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@#
 #
 version=0.2
@@ -140,101 +141,194 @@ ${MAGENTA}______________________________________________________________________
         portscan(){
             clear
             banner
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" >> scanresult.txt
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    nmap "$IP" >> scanresult.txt
+		    banner
+		    ;;
+		*)
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    sudo nmap "$IP" >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
         
         vulnscan(){
             clear
             banner
             echo -e "${YELLOW}[!] Vulnerability Scan Mode Selected "
-            echo -e "${GREEN}[!] Enter you target Host to scan:" 
-            read -r "Host"
-            nmap -sV --script=vulscan/vulscan.nse $Host >> scanresult.txt
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    read -p $'\n\e[32m[!] Enter your target Host to scan: ' Host
+		    nmap -sV --script=vulscan/vulscan.nse $Host >> scanresult.txt
+		    banner
+		    ;;
+		*)
+		    read -p $'\n\e[32m[!] Enter your target Host to scan: ' Host
+		    sudo nmap -sV --script=vulscan/vulscan.nse $Host >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         stealthscan(){
             clear
             banner
             echo -e "${YELLOW}[!]Stealh Scan Mode Selected"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" >> scanresult.txt
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP 
+		    read -r "IP"
+		    nmap "$IP" >> scanresult.txt
+		    banner
+		    ;;
+		*)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP 
+		    read -r "IP"
+		    sudo nmap "$IP" >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         report(){
             clear
             banner
             cat scanresult.txt | lolcat
-            read -n 1 -s -r -p "[✓] any key to continue"
+	    echo ""
+	    echo "[✓] any key to continue"
+	    read a1
             clear
             banner
         }
 #######################################################################################
-        synport_ss(){
+        synport_st(){
             clear
             banner
             echo -e "${YELLOW}[!]TCP SYN port scan"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" -sS >> scanresult.txt            
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    echo -e $RED Not Available For Termux!!!
+		    exit 0
+		    ;;
+		*)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    sudo nmap "$IP" -sS >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         tcpport_st(){
             clear
             banner
             echo -e "${YELLOW}[!]TCP connect port scan"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" -sT >> scanresult.txt            
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    nmap "$IP" -sT >> scanresult.txt
+		    banner
+		    ;;
+		*)
+		    
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    nmap "$IP" -sT >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         udpport_su(){
             clear
             banner
             echo -e "${YELLOW}[!]UDP port scan"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" -sU >> scanresult.txt    
-            banner        
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    echo -e $RED Not Available For Termux!!!
+		    exit 0
+		    ;;
+		*)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    sudo nmap "$IP" -sU >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         tcpport_sa(){
             clear
             banner
             echo -e "${YELLOW}[!]TCP ACK port scan"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" -sA >> scanresult.txt
-            banner            
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    echo -e $RED Not Available For Termux!!!
+		    exit 0
+		    ;;
+		*)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
+		    sudo nmap "$IP" -sA >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         tcpwinport(){
             clear
             banner
             echo -e "${YELLOW}[!]TCP Windows port scan"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" -sW >> scanresult.txt
-            banner            
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    echo -e $RED Not Available For Termux!!!
+		    exit 0
+		    ;;
+		*)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP 
+		    sudo nmap "$IP" -sW >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }
 
         tcpmaiport(){
             clear
             banner
             echo -e "${YELLOW}[!]TCP Maimon port scan"
-            echo ""
-            echo -e "${GREEN}[!] Enter you target IP to scan:" 
-            read -r "IP"
-            sudo nmap "$IP" -sM >> scanresult.txt
-            banner           
+	    os=$(uname -o)
+	    case $os in
+		Android)
+		    echo ""
+		    echo -e $RED Not Available For Termux!!!
+		    exit 0
+		    ;;
+		*)
+		    echo ""
+		    read -p $'\n\e[32m[!] Enter you target IP to scan: ' IP
+		    sudo nmap "$IP" -sM >> scanresult.txt
+		    banner
+		    ;;
+	    esac
         }        
 #######################################################################################
         case $selection in
@@ -252,37 +346,80 @@ ${MAGENTA}______________________________________________________________________
             12) exit;;
 			r) report;;
             u) update;;
-            exit) exit;;
+            e) exit;;
             *) echo "Please choose a number or type exit"
         esac
     done
 }
 
 init(){
+
+    os=$(uname -o)
+
+    case $os in
+
+	Android)
+
+	    init_android
+	    ;;
+	*)
+    
+    # Os Detection :D
+    
+    distro=$(source /etc/os-release && echo $ID)
+    
+    case $distro in
+	arch)
+	    pm="sudo pacman -Sy"
+	    ;;
+	ubuntu)
+	    pm="sudo apt install"
+	    ;;
+	linuxmint)
+	    pm="sudo apt install"
+	    ;;
+	kali)
+	    pm="sudo apt install"
+	    ;;
+	parrot)
+	    pm="sudo apt install"
+	    ;;
+	debian)
+	    pm="sudo apt install"
+	    ;;
+	void)
+	    pm="sudo xbps-install"
+	    ;;
+	*)
+	    echo -e $RED "Unsupported distro!"
+	    exit 0
+	    ;;
+    esac
+    
 # Check Root access
-echo ''
-sleep 1
-if [ "$EUID" -ne 0 ]
-then
-echo -e "${RED} [✗] No root detected :("
-echo ""
-echo -e "${RED} [!] Start the script with sudo / root."
-echo ""
-echo -e "${YELLOW} [!] Exiting Script..."
-sleep 3
-exit
-else
-echo -e "${GREEN} [✓] Root Access :)"
-sleep 2
-echo -e "${YELLOW} [!] Check dependecies :)"
-echo ""
-sleep 1
-fi
+#echo ''
+#sleep 1
+#if [ "$EUID" -ne 0 ]
+#then
+#echo -e "${RED} [✗] No root detected :("
+#echo ""
+#echo -e "${RED} [!] Start the script with sudo / root."
+#echo ""
+#echo -e "${YELLOW} [!] Exiting Script..."
+#sleep 3
+#exit
+#else
+#echo -e "${GREEN} [✓] Root Access :)"
+#sleep 2
+#echo -e "${YELLOW} [!] Check dependecies :)"
+#echo ""
+#sleep 1
+#fi
 if ! hash nmap 2>/dev/null;then
     echo ""
 	echo -e $RED "[✗] The Package nmap is in not istalled"
     echo ""
-	apt-get install nmap -y || 2&>/var/logs/nmapclierror.log
+	${pm} nmap || 2&>/var/logs/nmapclierror.log
 else
     echo ""
 	echo -e $GREEN "[✓] The Package nmap is installed"  
@@ -292,7 +429,7 @@ if ! hash lolcat 2>/dev/null;then
     echo ""
     echo -e  $RED "[✗] The Package lolcat is not installed"
     echo ""
-    apt-get install lolcat -y || 2&>/var/logs/nmapcli-error.log
+    ${pm} lolcat || 2&>/var/logs/nmapcli-error.log
 else
     echo ""
     echo -e $GREEN "[✓] The Package lolcat is installed"
@@ -302,30 +439,33 @@ if ! hash figlet 2>/dev/null;then
 	echo ""
     echo -e $RED "[✗] The Package figlet is not installed"
     echo ""
-	apt-get install figlet -y || 2&>/var/logs/nmapcli-error.log
+    ${pm} figlet || 2&>/var/logs/nmapcli-error.log
 else
     echo ""
-	echo -e $GREEN "[✓] The Package figlet is installed"
+    echo -e $GREEN "[✓] The Package figlet is installed"
 fi
 sleep 0.2
 if ! hash git 2>/dev/null;then
     echo ""
     echo -e $RED "[✗] The Package git is not installed" 
     echo ""
-    apt-get install git -y || 2&>/var/logs/nmapcli-error.log
+    ${pm} git || 2&>/var/logs/nmapcli-error.log
 else
     echo ""
     echo -e $GREEN "[✓] The Package git is installed"
 fi	
-if ! hash figlet 2>/dev/null;then
-	echo ""
-    echo -e $RED "[✗] The Package vulscan is not installed"
-	git clone https://github.com/scipag/vulscan scipag_vulscan 2&> /var/logs/nmapclierror.log
-    ln -s `pwd`/scipag_vulscan /usr/share/nmap/scripts/vulscan 2&> /var/logs/nmapclierror.log
+if [ -e "/usr/share/nmap/scripts/vulscan/" ] ; then
+
+    echo ""
+    echo -e $GREEN "[✓] The Package vulnscan is installed"
 else
     echo ""
-	echo -e $GREEN "[✓] The Package vulnscan is installed"
+    echo -e $RED "[✗] The Package vulscan is not installed"
+    sudo git clone https://github.com/scipag/vulscan scipag_vulscan || 2&>/var/logs/nmapcli-error.log
+    sudo mkdir /usr/share/nmap/scripts/vulscan && sudo cp -r scipag_vulscan/* /usr/share/nmap/scripts/vulscan/
+   
 fi
+touch nmapcli.installed
 sleep 1
 echo ""
 echo "loading menu...please wait"
@@ -333,13 +473,78 @@ sleep 1.5
 clear
 banner
 menu
+esac
+}
+
+init_android() {
+
+    if ! hash nmap 2>/dev/null;then
+    echo ""
+	echo -e $RED "[✗] The Package nmap is in not istalled"
+    echo ""
+	apt install nmap -y || 2&>/var/logs/nmapclierror.log
+else
+    echo ""
+	echo -e $GREEN "[✓] The Package nmap is installed"  
+fi	
+sleep 0.2
+if ! hash lolcat 2>/dev/null;then
+    echo ""
+    echo -e  $RED "[✗] The Package lolcat is not installed"
+    echo ""
+    pip3 install lolcat || 2&>/var/logs/nmapcli-error.log
+else
+    echo ""
+    echo -e $GREEN "[✓] The Package lolcat is installed"
+fi	
+sleep 0.2
+if ! hash figlet 2>/dev/null;then
+	echo ""
+    echo -e $RED "[✗] The Package figlet is not installed"
+    echo ""
+    apt install figlet -y || 2&>/var/logs/nmapcli-error.log
+else
+    echo ""
+    echo -e $GREEN "[✓] The Package figlet is installed"
+fi
+sleep 0.2
+if ! hash git 2>/dev/null;then
+    echo ""
+    echo -e $RED "[✗] The Package git is not installed" 
+    echo ""
+    apt install git -y || 2&>/var/logs/nmapcli-error.log
+else
+    echo ""
+    echo -e $GREEN "[✓] The Package git is installed"
+fi	
+if [ -e "$PREFIX/share/nmap/scripts/vulscan/" ] ; then
+
+    echo ""
+    echo -e $GREEN "[✓] The Package vulnscan is installed"
+else
+    echo ""
+    echo -e $RED "[✗] The Package vulscan is not installed"
+    git clone https://github.com/scipag/vulscan scipag_vulscan || 2&>/var/logs/nmapcli-error.log
+    mkdir $PREFIX/share/nmap/scripts/vulscan && sudo cp -r scipag_vulscan/* $PREFIX/share/nmap/scripts/vulscan/
+    
+fi
+touch nmapcli.installed
+sleep 1
+echo ""
+echo "loading menu...please wait"
+sleep 1.5
+clear
+banner
+menu
+
 }
 
 loader(){
-    if [[ -s nmapcli.installed ]];then
+    if [[ -f nmapcli.installed ]];then
     clear
     banner
-    root
+    sleep 2
+    #root
     menu
     else
     banner

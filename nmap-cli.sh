@@ -465,7 +465,7 @@ else
     sudo mkdir /usr/share/nmap/scripts/vulscan && sudo cp -r scipag_vulscan/* /usr/share/nmap/scripts/vulscan/
    
 fi
-touch nmapcli.installed
+sudo touch nmapcli.installed
 sleep 1
 echo ""
 echo "loading menu...please wait"

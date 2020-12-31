@@ -183,15 +183,13 @@ ${MAGENTA}______________________________________________________________________
 	    case $os in
 		Android)
 		    echo ""
-		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP 
-		    read -r "IP"
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
 		    nmap "$IP" >> scanresult.txt
 		    banner
 		    ;;
 		*)
 		    echo ""
-		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP 
-		    read -r "IP"
+		    read -p $'\n\e[32m[!] Enter your target IP to scan: ' IP
 		    sudo nmap "$IP" >> scanresult.txt
 		    banner
 		    ;;
